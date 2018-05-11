@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.labor.dao.BipForeignlanguageMapper">
+  <resultMap id="BaseResultMap" type="com.oracle.labor.po.BipForeignlanguage">
+    <id column="bip_fl_id" jdbcType="VARCHAR" property="bipFlId" />
+    <result column="bip_id" jdbcType="VARCHAR" property="bipId" />
+    <result column="bip_fl_years" jdbcType="VARCHAR" property="bipFlYears" />
+    <result column="bip_fl_jywy" jdbcType="VARCHAR" property="bipFlJywy" />
+    <result column="bip_fl_wysm" jdbcType="VARCHAR" property="bipFlWysm" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bip_fl_id, bip_id, bip_fl_years, bip_fl_jywy, bip_fl_wysm
+  </sql>
+  <select id="selectByExample" parameterType="com.oracle.labor.po.BipForeignlanguageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bip_foreignlanguage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bip_foreignlanguage
+    where bip_fl_id = #{bipFlId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bip_foreignlanguage
+    where bip_fl_id = #{bipFlId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oracle.labor.po.BipForeignlanguageExample">
+    delete from bip_foreignlanguage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oracle.labor.po.BipForeignlanguage">
+    insert into bip_foreignlanguage (bip_fl_id, bip_id, bip_fl_years, 
+      bip_fl_jywy, bip_fl_wysm)
+    values (#{bipFlId,jdbcType=VARCHAR}, #{bipId,jdbcType=VARCHAR}, #{bipFlYears,jdbcType=VARCHAR}, 
+      #{bipFlJywy,jdbcType=VARCHAR}, #{bipFlWysm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oracle.labor.po.BipForeignlanguage">
+    insert into bip_foreignlanguage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bipFlId != null">
+        bip_fl_id,
+      </if>
+      <if test="bipId != null">
+        bip_id,
+      </if>
+      <if test="bipFlYears != null">
+        bip_fl_years,
+      </if>
+      <if test="bipFlJywy != null">
+        bip_fl_jywy,
+      </if>
+      <if test="bipFlWysm != null">
+        bip_fl_wysm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bipFlId != null">
+        #{bipFlId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipId != null">
+        #{bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlYears != null">
+        #{bipFlYears,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlJywy != null">
+        #{bipFlJywy,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlWysm != null">
+        #{bipFlWysm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oracle.labor.po.BipForeignlanguageExample" resultType="java.lang.Long">
+    select count(*) from bip_foreignlanguage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bip_foreignlanguage
+    <set>
+      <if test="record.bipFlId != null">
+        bip_fl_id = #{record.bipFlId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipId != null">
+        bip_id = #{record.bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipFlYears != null">
+        bip_fl_years = #{record.bipFlYears,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipFlJywy != null">
+        bip_fl_jywy = #{record.bipFlJywy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipFlWysm != null">
+        bip_fl_wysm = #{record.bipFlWysm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bip_foreignlanguage
+    set bip_fl_id = #{record.bipFlId,jdbcType=VARCHAR},
+      bip_id = #{record.bipId,jdbcType=VARCHAR},
+      bip_fl_years = #{record.bipFlYears,jdbcType=VARCHAR},
+      bip_fl_jywy = #{record.bipFlJywy,jdbcType=VARCHAR},
+      bip_fl_wysm = #{record.bipFlWysm,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oracle.labor.po.BipForeignlanguage">
+    update bip_foreignlanguage
+    <set>
+      <if test="bipId != null">
+        bip_id = #{bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlYears != null">
+        bip_fl_years = #{bipFlYears,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlJywy != null">
+        bip_fl_jywy = #{bipFlJywy,jdbcType=VARCHAR},
+      </if>
+      <if test="bipFlWysm != null">
+        bip_fl_wysm = #{bipFlWysm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bip_fl_id = #{bipFlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oracle.labor.po.BipForeignlanguage">
+    update bip_foreignlanguage
+    set bip_id = #{bipId,jdbcType=VARCHAR},
+      bip_fl_years = #{bipFlYears,jdbcType=VARCHAR},
+      bip_fl_jywy = #{bipFlJywy,jdbcType=VARCHAR},
+      bip_fl_wysm = #{bipFlWysm,jdbcType=VARCHAR}
+    where bip_fl_id = #{bipFlId,jdbcType=VARCHAR}
+  </update>
+</mapper>

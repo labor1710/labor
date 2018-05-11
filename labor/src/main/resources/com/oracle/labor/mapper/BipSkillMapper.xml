@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.labor.dao.BipSkillMapper">
+  <resultMap id="BaseResultMap" type="com.oracle.labor.po.BipSkill">
+    <id column="bip_s_id" jdbcType="VARCHAR" property="bipSId" />
+    <result column="bip_id" jdbcType="VARCHAR" property="bipId" />
+    <result column="bip_s_years" jdbcType="VARCHAR" property="bipSYears" />
+    <result column="bip_s_zyjn" jdbcType="VARCHAR" property="bipSZyjn" />
+    <result column="bip_s_jsdj" jdbcType="VARCHAR" property="bipSJsdj" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bip_s_id, bip_id, bip_s_years, bip_s_zyjn, bip_s_jsdj
+  </sql>
+  <select id="selectByExample" parameterType="com.oracle.labor.po.BipSkillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bip_skill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bip_skill
+    where bip_s_id = #{bipSId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bip_skill
+    where bip_s_id = #{bipSId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oracle.labor.po.BipSkillExample">
+    delete from bip_skill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oracle.labor.po.BipSkill">
+    insert into bip_skill (bip_s_id, bip_id, bip_s_years, 
+      bip_s_zyjn, bip_s_jsdj)
+    values (#{bipSId,jdbcType=VARCHAR}, #{bipId,jdbcType=VARCHAR}, #{bipSYears,jdbcType=VARCHAR}, 
+      #{bipSZyjn,jdbcType=VARCHAR}, #{bipSJsdj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oracle.labor.po.BipSkill">
+    insert into bip_skill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bipSId != null">
+        bip_s_id,
+      </if>
+      <if test="bipId != null">
+        bip_id,
+      </if>
+      <if test="bipSYears != null">
+        bip_s_years,
+      </if>
+      <if test="bipSZyjn != null">
+        bip_s_zyjn,
+      </if>
+      <if test="bipSJsdj != null">
+        bip_s_jsdj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bipSId != null">
+        #{bipSId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipId != null">
+        #{bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSYears != null">
+        #{bipSYears,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSZyjn != null">
+        #{bipSZyjn,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSJsdj != null">
+        #{bipSJsdj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oracle.labor.po.BipSkillExample" resultType="java.lang.Long">
+    select count(*) from bip_skill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bip_skill
+    <set>
+      <if test="record.bipSId != null">
+        bip_s_id = #{record.bipSId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipId != null">
+        bip_id = #{record.bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipSYears != null">
+        bip_s_years = #{record.bipSYears,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipSZyjn != null">
+        bip_s_zyjn = #{record.bipSZyjn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipSJsdj != null">
+        bip_s_jsdj = #{record.bipSJsdj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bip_skill
+    set bip_s_id = #{record.bipSId,jdbcType=VARCHAR},
+      bip_id = #{record.bipId,jdbcType=VARCHAR},
+      bip_s_years = #{record.bipSYears,jdbcType=VARCHAR},
+      bip_s_zyjn = #{record.bipSZyjn,jdbcType=VARCHAR},
+      bip_s_jsdj = #{record.bipSJsdj,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oracle.labor.po.BipSkill">
+    update bip_skill
+    <set>
+      <if test="bipId != null">
+        bip_id = #{bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSYears != null">
+        bip_s_years = #{bipSYears,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSZyjn != null">
+        bip_s_zyjn = #{bipSZyjn,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSJsdj != null">
+        bip_s_jsdj = #{bipSJsdj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bip_s_id = #{bipSId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oracle.labor.po.BipSkill">
+    update bip_skill
+    set bip_id = #{bipId,jdbcType=VARCHAR},
+      bip_s_years = #{bipSYears,jdbcType=VARCHAR},
+      bip_s_zyjn = #{bipSZyjn,jdbcType=VARCHAR},
+      bip_s_jsdj = #{bipSJsdj,jdbcType=VARCHAR}
+    where bip_s_id = #{bipSId,jdbcType=VARCHAR}
+  </update>
+</mapper>
