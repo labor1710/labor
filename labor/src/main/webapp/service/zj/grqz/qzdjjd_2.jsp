@@ -1,12 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="/common/import.jsp" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>Untitled Document</title>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="<%=request.getContextPath()%>/styles/css/common.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath() %>/js/commonjs.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-1.11.1.js"></script>
 <script>
 	function either(item,location){
 		if(item.checked){
@@ -26,8 +28,16 @@
 	function toBack(){
 		window.location.href="<%=request.getContextPath()%>/service/zj/grqz/qzdjjd_1.jsp";
 	}
-	
-	function dosubmit(){
+	$(function(){
+		$("#btn_submit").click(function(){
+			if($("#freezeReason").val()==""){
+				alert("请输入操作原因");
+				return;
+			}
+			form1.submit();
+		})
+	})
+	/* function dosubmit(){
 					  
 		var cb = form1.cb;
 		
@@ -38,12 +48,12 @@
 	
 		form1.submit();	
 	
-	}
+	} */
 </script>
 	
 </head>
 <body>
-<form method="post" action="<%=request.getContextPath()%>/service/zj/grqz/grdj_dj.do?flag=DjJd" name="form1">
+<form method="post" action="<%=request.getContextPath()%>/service/zj/FreezeOrThaw" name="form1">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -86,15 +96,25 @@
               <TD width="6%">状态</TD>
             </TR>  
             <TR align="center" class="line4"> 
-              <TD width="10%"><input type="checkbox" name="cb" value="1" onclick="either(this,form1.cb)"></TD>
-              <TD width="6%"><a href="javascript:void(null)" style="cursor:hand" onclick="window.open('<%=request.getContextPath()%>/','详细信息','left=100 top=100 width=820,height=469 scrollbars')" >${user.bip_name}</TD>
-              <TD width="6%">${user.sex}</TD>
-              <TD width="16%">${user.bip_birthday}</TD>
-              <TD width="20%">${user.bip_res_address}</TD>
-              <TD width="10%">${user.bip_con_mobile}</TD>
-              <TD width="13%">${user.djsj}</TD>
-         
-              <TD width="6%">${user.s}</TD>
+              <TD width="10%">
+              <c:if test="${register.sfdj=='是'}" var="result">
+         	  	解冻<input type="checkbox" name="operation" value="1" onclick="either(this,form1.cb)"></TD>
+         	  </c:if>
+              <c:if test="${not result}">
+         	  	冻结<input type="checkbox" name="operation" value="2" onclick="either(this,form1.cb)"></TD>
+         	  </c:if>
+              <TD width="6%"><a href="javascript:void(null)" style="cursor:hand" onclick="window.open('<%=request.getContextPath()%>/'+'/service/zj/getBipAndFreezeInfo/${bip.bipCitizenid}','详细信息','left=100 top=100 width=820,height=469 scrollbars')" >${bip.bipName}</TD>
+              <TD width="6%">${bip.bipSex}</TD>
+              <TD width="16%">${bip.bipBirthday}</TD>
+              <TD width="20%">${bip.bipResAddress}</TD>
+              <TD width="10%">${bip.bipConMobile}</TD>
+              <TD width="13%">${register.djsj}</TD>
+         	  <c:if test="${register.sfdj=='是'}" var="result">
+         	  	<TD width="6%">冻结</TD>
+         	  </c:if>
+         	  <c:if test="${not result}">
+              	<TD width="6%">活跃</TD>
+              </c:if>
             </TR>
           </TBODY>
       </TABLE>
@@ -111,7 +131,8 @@
 	<tr><td align="center">请输入操作原因：</td></tr>
 		<tr>
 			<td align="center" valign="top">
-				<textarea name="djreason" cols="55" rows="8"></textarea>
+				<textarea id="freezeReason" name="freezeReason" cols="55" rows="8"></textarea>
+				<input type="hidden" name="bipid" value='${bip.bipId}'></input>
 			</td>
 		</tr>
 </table>
@@ -119,7 +140,7 @@
 	<tr><td>&nbsp;</td></tr>
 	<tr  align="center" class="line2"> 
 		<td> 
-		<input name="button1" type="button" class="BUTTONs3"  value="确定" onclick="dosubmit()">&nbsp;&nbsp;
+		<input name="button1" type="button" class="BUTTONs3"  value="确定" id="btn_submit">&nbsp;&nbsp;
 		<input name="button2" type="reset" class="BUTTONs3"  value="取消">&nbsp;&nbsp;
 		<input name="button3" type="button" class="BUTTONs3"  value="返 回" onclick="toBack()">
 		</td>

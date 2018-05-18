@@ -81,31 +81,31 @@
 						$.get("../getProficiency",{code:Bip.bipPcSlcd},function(data){
 							$("#jsjslcd").html(data);
 						})
-						if(Bip.bipTLowersecurity!=null){
+						if(Bip.bipTLowersecurity=="是"){
 							$("#dbry").attr("checked","checked");
 						}
-						if(Bip.bipTDestitute!=null){
+						if(Bip.bipTDestitute=="是"){
 							$("#tkry").attr("checked","checked");
 						}
-						if(Bip.bipTNewgraduate!=null){
+						if(Bip.bipTNewgraduate=="是"){
 							$("#yjgxbys").attr("checked","checked");
 						}
-						if(Bip.bipTVeteran!=null){
+						if(Bip.bipTVeteran=="是"){
 							$("#fytw").attr("checked","checked");
 						}
-						if(Bip.bipTOthercities!=null){
+						if(Bip.bipTOthercities=="是"){
 							$("#wfzr").attr("checked","checked");
 						}
-						if(Bip.bipTRhfl!=null){
+						if(Bip.bipTRhfl=="是"){
 							$("#sfrhfl").attr("checked","checked");
 						}
-						if(Bip.bipTPeasant!=null){
+						if(Bip.bipTPeasant=="是"){
 							$("#nzf").attr("checked","checked");
 						}
-						if(Bip.bipTCriminal!=null){
+						if(Bip.bipTCriminal=="是"){
 							$("#llsf").attr("checked","checked");
 						}
-						if(Bip.bipTCzjyyhz!=null){
+						if(Bip.bipTCzjyyhz=="是"){
 							$("#sfczjyyhz").attr("checked","checked");
 						}
 					}
@@ -128,7 +128,8 @@
 		$("#whcd1").load("../getEducationalLevel",{code:"10"});
 		//省变化
 		$("#dwszs").change(function(){
-			$("#dwszq").empty();
+			$("#dwszq").empty()	 MPO																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+			
 			$("#dwszj").empty();			
 			$.get("../getCity",{code:$("#dwszs").val()},function(data){
 				$("#dwszq").html(data);
@@ -198,9 +199,9 @@
 					
 					var csnx_value=$("#init_csnx").val();
 					
-					var init_zyjn=$("<td width='13%' align='right'>职业技能 </td ><td width='19%'><input type='hidden' name='bip_s_zyjn' value='"+zyjn_value+"'><input type='text' name='init_zyjn' size='1' value='"+zyjn_text+"' readonly='readonly' style='WIDTH: 100%'></td >");			
-					var init_jsdj=$("<td width='11%' align='right'>技术等级 </td ><td width='18%'><input type='hidden' name='bip_s_jsdj' value='"+jsdj_value+"'><input type='text' name='init_jsdj' value='"+jsdj_text+"' size='1' readonly='readonly' style='WIDTH: 100%'></td >");
-					var init_csnx=$("<td width='11%' align='right'>从事年限 </td ><td width='15%'><INPUT type='text' name='bip_s_years' value='"+csnx_value+"' readonly='readonly' style='WIDTH: 100%'></td >");
+					var init_zyjn=$("<td width='13%' align='right'>职业技能 </td ><td width='19%'><input type='hidden' name='bipSZyjn' value='"+zyjn_value+"'><input type='text' name='init_zyjn' size='1' value='"+zyjn_text+"' readonly='readonly' style='WIDTH: 100%'></td >");			
+					var init_jsdj=$("<td width='11%' align='right'>技术等级 </td ><td width='18%'><input type='hidden' name='bipSJsdj' value='"+jsdj_value+"'><input type='text' name='init_jsdj' value='"+jsdj_text+"' size='1' readonly='readonly' style='WIDTH: 100%'></td >");
+					var init_csnx=$("<td width='11%' align='right'>从事年限 </td ><td width='15%'><INPUT type='text' name='bipSYears' value='"+csnx_value+"' readonly='readonly' style='WIDTH: 100%'></td >");
 					var csnx=$("<td width='7%' align='center'><INPUT type='hidden' value='"+csnx_value+" style='WIDTH: 100%'></td >");
 					var jnsc=$("<td width='8%' align='center'><input name='jnsc' type='button'  value='删除' class='BUTTON2' onClick='delRows(jywyTable)'></td >");
 					var tr=$("<tr class='line2' align='center' ></tr >");
@@ -260,7 +261,7 @@
 			var init_wysm_value=$("#init_wysm").val();
 			
 			var init_jywy=$("<td width='13%' align='right'>具有外语 </td ><td width='19%'><input type='hidden' name='bip_fl_jywy' value='"+ijwy_value+"'><input type='text' name='init_jywy' size='1' value='"+ijwy_text+"' readonly='readonly' style='WIDTH: 100%'></td >");			
-			var init_wyslcd=$("<td width='11%' align='right'>熟练程度 </td ><td width='18%'><input type='hidden' name='bip_fl_years' value='"+init_wyslcd_value+"'><input type='text' name='init_wyslcd' value='"+init_wyslcd_text+"' size='1' readonly='readonly' style='WIDTH: 100%'></td >");
+			var init_wyslcd=$("<td width='11%' align='right'>熟练程度 </td ><td width='18%'><input type='hidden' name='bip_fl_slcd' value='"+init_wyslcd_value+"'><input type='text' name='init_wyslcd' value='"+init_wyslcd_text+"' size='1' readonly='readonly' style='WIDTH: 100%'></td >");
 			var init_wysm=$("<td width='11%' align='right'>外语说明 </td ><td width='15%'><INPUT type='text' name='init_wysm' value='"+init_wysm_value+"' readonly='readonly' style='WIDTH: 100%'></td >");
 			var wytj=$("<td align='center'><INPUT type='hidden' value='"+init_wysm_value+" style='WIDTH: 100%'></td >");
 			var wysc=$("<td width='8%' align='center'><input name='wysc' type='button'  value='删除' class='BUTTON2' onClick='delRows(jywyTable)'></td >");
@@ -349,7 +350,7 @@
 					var ygxs1_value=$("#ygxs1 option:selected").val();
 					
 									
-					var qzgz1=$("<td width='40' align='right'>工种 </td ><td width='110'><input type='hidden' name='GZ' value='"+qzgz1_value+"'><input type='text' size='1' value='"+qzgz1_text+"' readonly='readonly' style='WIDTH: 100%'></td >");			
+					var qzgz1=$("<td width='40' align='right'>工种 </td ><td width='110'><input type='hidden' name='GZ' id='GZ' value='"+qzgz1_value+"'><input type='text' size='1' value='"+qzgz1_text+"' readonly='readonly' style='WIDTH: 100%'></td >");			
 					var ygxs1=$("<td width='50' align='right'>用工形式 </td ><td width='80'><input type='hidden' name='YGXS' value='"+ygxs1_value+"'><input type='text' value='"+ygxs1_text+"' size='1' readonly='readonly' style='WIDTH: 100%'></td >");
 					var zdyx=$("<td width='40' align='right'>月薪  </td ><td width='140'><INPUT type='text' name='ZDYX' value='"+zdyx1_value+"' readonly='readonly' style='WIDTH: 40px'>&nbsp;至&nbsp;<INPUT type='text' name='ZGYX' value='"+zgyx2_value+"' readonly='readonly' style='WIDTH: 40px'></td >");
 					var gztj=$("<td width='40' align='right'><INPUT type='hidden'style='WIDTH: 100%'></td >");
@@ -458,8 +459,82 @@
 				$("#qzgz1").focus();
 				return;
 			} */
-	
-			
+			if($("#GZ").length==0){
+				alert("择业工种为必添项，请添加");
+				return;
+			}
+			if($("#dbry").prop("checked")==true){
+				$("#dbry").val("是");
+			}else{
+				$("#dbry").prop("checked","checked");
+				$("#dbry").val("否");
+			}
+			if($("#tkry").prop("checked")==true){
+				$("#tkry").val("是");
+			}else{
+				$("#tkry").prop("checked","checked");
+				$("#tkry").val("否");
+			}
+			if($("#yjgxbys").prop("checked")==true){
+				$("#yjgxbys").val("是");
+			}else{
+				$("#yjgxbys").prop("checked","checked");
+				$("#yjgxbys").val("否");
+			}
+			if($("#fytw").prop("checked")==true){
+				$("#fytw").val("是");
+			}else{
+				$("#fytw").prop("checked","checked");
+				$("#fytw").val("否");
+			}
+			if($("#wfzr").prop("checked")==true){
+				$("#wfzr").val("是");
+			}else{
+				$("#wfzr").prop("checked","checked");
+				$("#wfzr").val("否");
+			}
+			if($("#sfrhfl").prop("checked")==true){
+				$("#sfrhfl").val("是");
+			}else{
+				$("#sfrhfl").prop("checked","checked");
+				$("#sfrhfl").val("否");
+			}
+			if($("#nzf").prop("checked")==true){
+				$("#nzf").val("是");
+			}else{
+				$("#nzf").prop("checked","checked");
+				$("#nzf").val("否");
+			}
+			if($("#llsf").prop("checked")==true){
+				$("#llsf").val("是");
+			}else{
+				$("#llsf").prop("checked","checked");
+				$("#llsf").val("否");
+			}
+			if($("#sdczjyyhz").prop("checked")==true){
+				$("#sdczjyyhz").val("是");
+			}else{
+				$("#sdczjyyhz").prop("checked","checked");
+				$("#sdczjyyhz").val("否");
+			}
+			if($("#sfjsdx").prop("checked")==true){
+				$("#sfjsdx").val("是");
+			}else{
+				$("#sfjsdx").prop("checked","checked");
+				$("#sfjsdx").val("否");
+			}
+			if($("#sfcjpx").prop("checked")==true){
+				$("#sfcjpx").val("是");
+			}else{
+				$("#sfcjpx").prop("checked","checked");
+				$("#sfcjpx").val("否");
+			}
+			if($("#sfjszyzd").prop("checked")==true){
+				$("#sfjszyzd").val("是");
+			}else{
+				$("#sfjszyzd").prop("checked","checked");
+				$("#sfjszyzd").val("否");
+			}
 			$("form").submit();
 		});
 		$("#cz").click(function(){
@@ -766,7 +841,7 @@
     	<TABLE width="100%" border=0 cellPadding=0 cellSpacing=1 class="tablebody">
         <tr class="line1">
           <td width="13%" align="right">单位性质</td >
-          <td width="22%" ><select id="dwxz" name="dwxz" size="1"  style="WIDTH: 100%" ></select></td >
+          <td width="22%" ><select id="dwxz" name="dwxx" size="1"  style="WIDTH: 100%" ></select></td >
           <td width="10%" align="right">单位行业</td >
           <td width="21%" ><select id="dwhy" name="dwhy" size="1"  style="WIDTH: 100%"></select></td >
           <td width="11%" align="right">经济类型</td >
@@ -784,11 +859,11 @@
 		  <table width="100%" border="0" cellpadding="0" cellspacing="1">
 		    <tr class="line2">
 		      <td width="14%" align="right">是否接收短信</td >
-		      <td width="17%"><input name="sfjsdx" type="checkbox" value=""  class="radio" ></td >
+		      <td width="17%"><input name="sfjsdx" type="checkbox" value=""  class="radio" id="sfjsdx"></td >
 		      <td width="14%" align="right">是否参加培训</td >
-		      <td width="14%"><input name="sfcjpx" type="checkbox" value=""  class="radio"></td >
+		      <td width="14%"><input name="sfcjpx" type="checkbox" value=""  class="radio" id="sfcjpx"></td >
 		      <td width="18%" align="right">是否接受职业指导</td >
-		      <td width="23%"><input name="sfjszyzd" type="checkbox" value=""  class="radio"></td >
+		      <td width="23%"><input name="sfjszyzd" type="checkbox" value=""  class="radio" id="sfjszyzd"></td >
 		    </tr>
 		</table>
     </td >
@@ -814,16 +889,16 @@
 			<table id="qzgzTable" width="100%" border=0 cellPadding=0 cellSpacing=1  class="tablebody" style="display:block"  >
 			  <tr class="line1" align="center">
 			    <td width="40"><span class="redtxt">*</span>工种</td>
-				<td id="o1" width="110"><select class="qzgz1" id="qzgz1" name="qzgz1" size="1"  style="WIDTH: 100%"></select></td >
+				<td id="o1" width="110"><select class="qzgz1" id="qzgz1" name="gz" size="1"  style="WIDTH: 100%"></select></td >
 			    <td width="50">用工形式</td>
-				<td width="80"><select class="ygxs1" id="ygxs1" name="ygxs1" size="1"  style="WIDTH: 100%"></select></td >
+				<td width="80"><select class="ygxs1" id="ygxs1" name="ygxs" size="1"  style="WIDTH: 100%"></select></td >
 			    <td width="50" align="right">月薪</td>
 				<td width="140">
 					<div id="yx" style="display:">
 					<table><tr><td>
-					<input id="zdyx1" name="zdyx1" type="text" style="width:40px" maxlength="6">
+					<input id="zdyx1" name="zdyx" type="text" style="width:40px" maxlength="6">
                   	至
-					<input id="zgyx2" name="zgyx2" type="text" style="width:40px" maxlength="6" >
+					<input id="zgyx2" name="zgyx" type="text" style="width:40px" maxlength="6" >
 					元</td></tr></table>
 					</div>
 				</td >

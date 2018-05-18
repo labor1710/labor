@@ -97,7 +97,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="account">
+  <insert id="insert" parameterType="Account">
     insert into account (accountid, name, remain
       )
     values (#{accountid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remain,jdbcType=INTEGER}
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="account">
+  <update id="updateByPrimaryKeySelective" parameterType="Account">
     update account
     <set>
       <if test="name != null">
@@ -172,7 +172,7 @@
     </set>
     where accountid = #{accountid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="account">
+  <update id="updateByPrimaryKey" parameterType="Account">
     update account
     set name = #{name,jdbcType=VARCHAR},
       remain = #{remain,jdbcType=INTEGER}

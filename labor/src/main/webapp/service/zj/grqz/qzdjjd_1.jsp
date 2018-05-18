@@ -7,6 +7,8 @@
 <title>Untitled Document</title>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="<%=request.getContextPath()%>/styles/css/common.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath() %>/js/commonjs.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-1.11.1.js"></script>
 <script language="javascript">
 function checkeNO(NO){
 	var str=NO;
@@ -35,27 +37,31 @@ function check(myform){
 </script>
 
 <script type="text/javascript">
-	function huitian1(){
-		
-	var p=document.getElementById("bip_citizenid").value;
-
-	var xhr=new XMLHttpRequest();
-		xhr.open("get","<%=request.getContextPath()%>/service/zj/grqz/grdj_dj.do?bip_citizenid="+p,true);		
-	xhr.onreadystatechange=function(){
-		if(xhr.readyState==4){
-			var nn=xhr.responseText.split(",");
-			if(nn[1]=="w"){
-			alert("无此用户");
-			}	
-				document.getElementById("bip_name").value=nn[0];
-			
-			}
-			}
-			xhr.send(null);
-}
+	$(function(){
+		$("#bip_citizenid").blur(function(){
+			$.get("../getBipByCitizenid/"+$(this).val(),function(bip){
+				if(bip.bipId==null){
+					alert("不存在此用户，请检查你输入的身份证号码是否有误");
+					$("#bip_name").empty();
+					$(this).focus();
+				}else{
+					$("#bip_name").val(bip.bipName);
+				}
+			})
+		})
+	})
 </script>
 <script>
-	function dosubmit(){
+	$(function(){
+		$("#btn").click(function(){
+			if($("#bip_citizenid").val()==""&&$("#bip_name").val()==""){
+				alert("请填写至少一项信息");
+				return;
+			}
+			$("form").submit();
+		})
+	})
+	<%-- function dosubmit(){
 		if(form1.bip_citizenid.value==""&form1.bip_name.value==""){
 			alert("请填写至少一项信息！");
 			return;
@@ -64,14 +70,14 @@ function check(myform){
 		form1.button2.disabled = "true";
 		form1.action="<%=request.getContextPath()%>/service/zj/grqz/grdj_dj.do?flag=selectGrByPid";
 		form1.submit();
-	}
+	} --%>
 	
 
 </script>
 
 </head>
 <body>
-<form method="post" action="" name="form1">
+<form method="post" action="../getBipForFreezeAndThaw" name="form1">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
@@ -121,7 +127,7 @@ function check(myform){
 <table width="98%" border="0" align="center">
   <TR align="center"  class="line2"> 
     <TD>
-      <INPUT name="button" type="button" class="BUTTONs3" value="确 定" onClick="dosubmit()">
+      <INPUT name="button" type="button" class="BUTTONs3" value="确 定" id="btn">
    
       &nbsp;&nbsp; <INPUT class="BUTTONs3" type="reset" value="取 消" name="button2">
     </TD>
