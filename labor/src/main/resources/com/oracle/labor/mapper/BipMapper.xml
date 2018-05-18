@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.labor.dao.BipMapper">
+  <resultMap id="BaseResultMap" type="com.oracle.labor.po.Bip">
+    <id column="bip_id" jdbcType="VARCHAR" property="bipId" />
+    <result column="bip_citizenid" jdbcType="VARCHAR" property="bipCitizenid" />
+    <result column="bip_sex" jdbcType="VARCHAR" property="bipSex" />
+    <result column="bip_age" jdbcType="VARCHAR" property="bipAge" />
+    <result column="bip_name" jdbcType="VARCHAR" property="bipName" />
+    <result column="bip_birthday" jdbcType="VARCHAR" property="bipBirthday" />
+    <result column="bip_minzu" jdbcType="VARCHAR" property="bipMinzu" />
+    <result column="bip_zzmm" jdbcType="VARCHAR" property="bipZzmm" />
+    <result column="bip_hyzk" jdbcType="VARCHAR" property="bipHyzk" />
+    <result column="bip_hjxz" jdbcType="VARCHAR" property="bipHjxz" />
+    <result column="bip_rylb" jdbcType="VARCHAR" property="bipRylb" />
+    <result column="bip_jkzk" jdbcType="VARCHAR" property="bipJkzk" />
+    <result column="bip_cjqk" jdbcType="VARCHAR" property="bipCjqk" />
+    <result column="bip_eyesightleft" jdbcType="VARCHAR" property="bipEyesightleft" />
+    <result column="bip_eyesightright" jdbcType="VARCHAR" property="bipEyesightright" />
+    <result column="bip_long" jdbcType="VARCHAR" property="bipLong" />
+    <result column="bip_weight" jdbcType="VARCHAR" property="bipWeight" />
+    <result column="bip_hkszd" jdbcType="VARCHAR" property="bipHkszd" />
+    <result column="bip_whcd" jdbcType="VARCHAR" property="bipWhcd" />
+    <result column="bip_subject" jdbcType="VARCHAR" property="bipSubject" />
+    <result column="bip_graduateschool" jdbcType="VARCHAR" property="bipGraduateschool" />
+    <result column="bip_bysj" jdbcType="VARCHAR" property="bipBysj" />
+    <result column="bip_educationallevel2" jdbcType="VARCHAR" property="bipEducationallevel2" />
+    <result column="bip_con_telephone" jdbcType="VARCHAR" property="bipConTelephone" />
+    <result column="bip_con_mobile" jdbcType="VARCHAR" property="bipConMobile" />
+    <result column="bip_con_email" jdbcType="VARCHAR" property="bipConEmail" />
+    <result column="bip_con_postcode" jdbcType="VARCHAR" property="bipConPostcode" />
+    <result column="bip_con_contact" jdbcType="VARCHAR" property="bipConContact" />
+    <result column="bip_con_contacttel" jdbcType="VARCHAR" property="bipConContacttel" />
+    <result column="bip_res_address" jdbcType="VARCHAR" property="bipResAddress" />
+    <result column="bip_t_lowersecurity" jdbcType="VARCHAR" property="bipTLowersecurity" />
+    <result column="bip_t_criminal" jdbcType="VARCHAR" property="bipTCriminal" />
+    <result column="bip_t_destitute" jdbcType="VARCHAR" property="bipTDestitute" />
+    <result column="bip_t_peasant" jdbcType="VARCHAR" property="bipTPeasant" />
+    <result column="bip_t_veteran" jdbcType="VARCHAR" property="bipTVeteran" />
+    <result column="bip_t_othercities" jdbcType="VARCHAR" property="bipTOthercities" />
+    <result column="bip_t_czjyyhz" jdbcType="VARCHAR" property="bipTCzjyyhz" />
+    <result column="bip_t_rhfl" jdbcType="VARCHAR" property="bipTRhfl" />
+    <result column="bip_t_newgraduate" jdbcType="VARCHAR" property="bipTNewgraduate" />
+    <result column="bip_pc_dj" jdbcType="VARCHAR" property="bipPcDj" />
+    <result column="bip_pc_slcd" jdbcType="VARCHAR" property="bipPcSlcd" />
+    <result column="bip_resume" jdbcType="VARCHAR" property="bipResume" />
+    <result column="bip_qtsm" jdbcType="VARCHAR" property="bipQtsm" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bip_id, bip_citizenid, bip_sex, bip_age, bip_name, bip_birthday, bip_minzu, bip_zzmm, 
+    bip_hyzk, bip_hjxz, bip_rylb, bip_jkzk, bip_cjqk, bip_eyesightleft, bip_eyesightright, 
+    bip_long, bip_weight, bip_hkszd, bip_whcd, bip_subject, bip_graduateschool, bip_bysj, 
+    bip_educationallevel2, bip_con_telephone, bip_con_mobile, bip_con_email, bip_con_postcode, 
+    bip_con_contact, bip_con_contacttel, bip_res_address, bip_t_lowersecurity, bip_t_criminal, 
+    bip_t_destitute, bip_t_peasant, bip_t_veteran, bip_t_othercities, bip_t_czjyyhz, 
+    bip_t_rhfl, bip_t_newgraduate, bip_pc_dj, bip_pc_slcd, bip_resume, bip_qtsm
+  </sql>
+  <select id="selectByExample" parameterType="com.oracle.labor.po.BipExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bip
+    where bip_id = #{bipId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bip
+    where bip_id = #{bipId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oracle.labor.po.BipExample">
+    delete from bip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oracle.labor.po.Bip">
+    insert into bip (bip_id, bip_citizenid, bip_sex, 
+      bip_age, bip_name, bip_birthday, 
+      bip_minzu, bip_zzmm, bip_hyzk, 
+      bip_hjxz, bip_rylb, bip_jkzk, 
+      bip_cjqk, bip_eyesightleft, bip_eyesightright, 
+      bip_long, bip_weight, bip_hkszd, 
+      bip_whcd, bip_subject, bip_graduateschool, 
+      bip_bysj, bip_educationallevel2, bip_con_telephone, 
+      bip_con_mobile, bip_con_email, bip_con_postcode, 
+      bip_con_contact, bip_con_contacttel, bip_res_address, 
+      bip_t_lowersecurity, bip_t_criminal, bip_t_destitute, 
+      bip_t_peasant, bip_t_veteran, bip_t_othercities, 
+      bip_t_czjyyhz, bip_t_rhfl, bip_t_newgraduate, 
+      bip_pc_dj, bip_pc_slcd, bip_resume, 
+      bip_qtsm)
+    values (#{bipId,jdbcType=VARCHAR}, #{bipCitizenid,jdbcType=VARCHAR}, #{bipSex,jdbcType=VARCHAR}, 
+      #{bipAge,jdbcType=VARCHAR}, #{bipName,jdbcType=VARCHAR}, #{bipBirthday,jdbcType=VARCHAR}, 
+      #{bipMinzu,jdbcType=VARCHAR}, #{bipZzmm,jdbcType=VARCHAR}, #{bipHyzk,jdbcType=VARCHAR}, 
+      #{bipHjxz,jdbcType=VARCHAR}, #{bipRylb,jdbcType=VARCHAR}, #{bipJkzk,jdbcType=VARCHAR}, 
+      #{bipCjqk,jdbcType=VARCHAR}, #{bipEyesightleft,jdbcType=VARCHAR}, #{bipEyesightright,jdbcType=VARCHAR}, 
+      #{bipLong,jdbcType=VARCHAR}, #{bipWeight,jdbcType=VARCHAR}, #{bipHkszd,jdbcType=VARCHAR}, 
+      #{bipWhcd,jdbcType=VARCHAR}, #{bipSubject,jdbcType=VARCHAR}, #{bipGraduateschool,jdbcType=VARCHAR}, 
+      #{bipBysj,jdbcType=VARCHAR}, #{bipEducationallevel2,jdbcType=VARCHAR}, #{bipConTelephone,jdbcType=VARCHAR}, 
+      #{bipConMobile,jdbcType=VARCHAR}, #{bipConEmail,jdbcType=VARCHAR}, #{bipConPostcode,jdbcType=VARCHAR}, 
+      #{bipConContact,jdbcType=VARCHAR}, #{bipConContacttel,jdbcType=VARCHAR}, #{bipResAddress,jdbcType=VARCHAR}, 
+      #{bipTLowersecurity,jdbcType=VARCHAR}, #{bipTCriminal,jdbcType=VARCHAR}, #{bipTDestitute,jdbcType=VARCHAR}, 
+      #{bipTPeasant,jdbcType=VARCHAR}, #{bipTVeteran,jdbcType=VARCHAR}, #{bipTOthercities,jdbcType=VARCHAR}, 
+      #{bipTCzjyyhz,jdbcType=VARCHAR}, #{bipTRhfl,jdbcType=VARCHAR}, #{bipTNewgraduate,jdbcType=VARCHAR}, 
+      #{bipPcDj,jdbcType=VARCHAR}, #{bipPcSlcd,jdbcType=VARCHAR}, #{bipResume,jdbcType=VARCHAR}, 
+      #{bipQtsm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oracle.labor.po.Bip">
+    insert into bip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bipId != null">
+        bip_id,
+      </if>
+      <if test="bipCitizenid != null">
+        bip_citizenid,
+      </if>
+      <if test="bipSex != null">
+        bip_sex,
+      </if>
+      <if test="bipAge != null">
+        bip_age,
+      </if>
+      <if test="bipName != null">
+        bip_name,
+      </if>
+      <if test="bipBirthday != null">
+        bip_birthday,
+      </if>
+      <if test="bipMinzu != null">
+        bip_minzu,
+      </if>
+      <if test="bipZzmm != null">
+        bip_zzmm,
+      </if>
+      <if test="bipHyzk != null">
+        bip_hyzk,
+      </if>
+      <if test="bipHjxz != null">
+        bip_hjxz,
+      </if>
+      <if test="bipRylb != null">
+        bip_rylb,
+      </if>
+      <if test="bipJkzk != null">
+        bip_jkzk,
+      </if>
+      <if test="bipCjqk != null">
+        bip_cjqk,
+      </if>
+      <if test="bipEyesightleft != null">
+        bip_eyesightleft,
+      </if>
+      <if test="bipEyesightright != null">
+        bip_eyesightright,
+      </if>
+      <if test="bipLong != null">
+        bip_long,
+      </if>
+      <if test="bipWeight != null">
+        bip_weight,
+      </if>
+      <if test="bipHkszd != null">
+        bip_hkszd,
+      </if>
+      <if test="bipWhcd != null">
+        bip_whcd,
+      </if>
+      <if test="bipSubject != null">
+        bip_subject,
+      </if>
+      <if test="bipGraduateschool != null">
+        bip_graduateschool,
+      </if>
+      <if test="bipBysj != null">
+        bip_bysj,
+      </if>
+      <if test="bipEducationallevel2 != null">
+        bip_educationallevel2,
+      </if>
+      <if test="bipConTelephone != null">
+        bip_con_telephone,
+      </if>
+      <if test="bipConMobile != null">
+        bip_con_mobile,
+      </if>
+      <if test="bipConEmail != null">
+        bip_con_email,
+      </if>
+      <if test="bipConPostcode != null">
+        bip_con_postcode,
+      </if>
+      <if test="bipConContact != null">
+        bip_con_contact,
+      </if>
+      <if test="bipConContacttel != null">
+        bip_con_contacttel,
+      </if>
+      <if test="bipResAddress != null">
+        bip_res_address,
+      </if>
+      <if test="bipTLowersecurity != null">
+        bip_t_lowersecurity,
+      </if>
+      <if test="bipTCriminal != null">
+        bip_t_criminal,
+      </if>
+      <if test="bipTDestitute != null">
+        bip_t_destitute,
+      </if>
+      <if test="bipTPeasant != null">
+        bip_t_peasant,
+      </if>
+      <if test="bipTVeteran != null">
+        bip_t_veteran,
+      </if>
+      <if test="bipTOthercities != null">
+        bip_t_othercities,
+      </if>
+      <if test="bipTCzjyyhz != null">
+        bip_t_czjyyhz,
+      </if>
+      <if test="bipTRhfl != null">
+        bip_t_rhfl,
+      </if>
+      <if test="bipTNewgraduate != null">
+        bip_t_newgraduate,
+      </if>
+      <if test="bipPcDj != null">
+        bip_pc_dj,
+      </if>
+      <if test="bipPcSlcd != null">
+        bip_pc_slcd,
+      </if>
+      <if test="bipResume != null">
+        bip_resume,
+      </if>
+      <if test="bipQtsm != null">
+        bip_qtsm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bipId != null">
+        #{bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="bipCitizenid != null">
+        #{bipCitizenid,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSex != null">
+        #{bipSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bipAge != null">
+        #{bipAge,jdbcType=VARCHAR},
+      </if>
+      <if test="bipName != null">
+        #{bipName,jdbcType=VARCHAR},
+      </if>
+      <if test="bipBirthday != null">
+        #{bipBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="bipMinzu != null">
+        #{bipMinzu,jdbcType=VARCHAR},
+      </if>
+      <if test="bipZzmm != null">
+        #{bipZzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHyzk != null">
+        #{bipHyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHjxz != null">
+        #{bipHjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="bipRylb != null">
+        #{bipRylb,jdbcType=VARCHAR},
+      </if>
+      <if test="bipJkzk != null">
+        #{bipJkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipCjqk != null">
+        #{bipCjqk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEyesightleft != null">
+        #{bipEyesightleft,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEyesightright != null">
+        #{bipEyesightright,jdbcType=VARCHAR},
+      </if>
+      <if test="bipLong != null">
+        #{bipLong,jdbcType=VARCHAR},
+      </if>
+      <if test="bipWeight != null">
+        #{bipWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHkszd != null">
+        #{bipHkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipWhcd != null">
+        #{bipWhcd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSubject != null">
+        #{bipSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bipGraduateschool != null">
+        #{bipGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bipBysj != null">
+        #{bipBysj,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEducationallevel2 != null">
+        #{bipEducationallevel2,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConTelephone != null">
+        #{bipConTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConMobile != null">
+        #{bipConMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConEmail != null">
+        #{bipConEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConPostcode != null">
+        #{bipConPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConContact != null">
+        #{bipConContact,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConContacttel != null">
+        #{bipConContacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="bipResAddress != null">
+        #{bipResAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTLowersecurity != null">
+        #{bipTLowersecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTCriminal != null">
+        #{bipTCriminal,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTDestitute != null">
+        #{bipTDestitute,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTPeasant != null">
+        #{bipTPeasant,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTVeteran != null">
+        #{bipTVeteran,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTOthercities != null">
+        #{bipTOthercities,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTCzjyyhz != null">
+        #{bipTCzjyyhz,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTRhfl != null">
+        #{bipTRhfl,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTNewgraduate != null">
+        #{bipTNewgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="bipPcDj != null">
+        #{bipPcDj,jdbcType=VARCHAR},
+      </if>
+      <if test="bipPcSlcd != null">
+        #{bipPcSlcd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipResume != null">
+        #{bipResume,jdbcType=VARCHAR},
+      </if>
+      <if test="bipQtsm != null">
+        #{bipQtsm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oracle.labor.po.BipExample" resultType="java.lang.Long">
+    select count(*) from bip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bip
+    <set>
+      <if test="record.bipId != null">
+        bip_id = #{record.bipId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipCitizenid != null">
+        bip_citizenid = #{record.bipCitizenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipSex != null">
+        bip_sex = #{record.bipSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipAge != null">
+        bip_age = #{record.bipAge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipName != null">
+        bip_name = #{record.bipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipBirthday != null">
+        bip_birthday = #{record.bipBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipMinzu != null">
+        bip_minzu = #{record.bipMinzu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipZzmm != null">
+        bip_zzmm = #{record.bipZzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipHyzk != null">
+        bip_hyzk = #{record.bipHyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipHjxz != null">
+        bip_hjxz = #{record.bipHjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipRylb != null">
+        bip_rylb = #{record.bipRylb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipJkzk != null">
+        bip_jkzk = #{record.bipJkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipCjqk != null">
+        bip_cjqk = #{record.bipCjqk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipEyesightleft != null">
+        bip_eyesightleft = #{record.bipEyesightleft,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipEyesightright != null">
+        bip_eyesightright = #{record.bipEyesightright,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipLong != null">
+        bip_long = #{record.bipLong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipWeight != null">
+        bip_weight = #{record.bipWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipHkszd != null">
+        bip_hkszd = #{record.bipHkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipWhcd != null">
+        bip_whcd = #{record.bipWhcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipSubject != null">
+        bip_subject = #{record.bipSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipGraduateschool != null">
+        bip_graduateschool = #{record.bipGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipBysj != null">
+        bip_bysj = #{record.bipBysj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipEducationallevel2 != null">
+        bip_educationallevel2 = #{record.bipEducationallevel2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConTelephone != null">
+        bip_con_telephone = #{record.bipConTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConMobile != null">
+        bip_con_mobile = #{record.bipConMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConEmail != null">
+        bip_con_email = #{record.bipConEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConPostcode != null">
+        bip_con_postcode = #{record.bipConPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConContact != null">
+        bip_con_contact = #{record.bipConContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipConContacttel != null">
+        bip_con_contacttel = #{record.bipConContacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipResAddress != null">
+        bip_res_address = #{record.bipResAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTLowersecurity != null">
+        bip_t_lowersecurity = #{record.bipTLowersecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTCriminal != null">
+        bip_t_criminal = #{record.bipTCriminal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTDestitute != null">
+        bip_t_destitute = #{record.bipTDestitute,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTPeasant != null">
+        bip_t_peasant = #{record.bipTPeasant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTVeteran != null">
+        bip_t_veteran = #{record.bipTVeteran,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTOthercities != null">
+        bip_t_othercities = #{record.bipTOthercities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTCzjyyhz != null">
+        bip_t_czjyyhz = #{record.bipTCzjyyhz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTRhfl != null">
+        bip_t_rhfl = #{record.bipTRhfl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipTNewgraduate != null">
+        bip_t_newgraduate = #{record.bipTNewgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipPcDj != null">
+        bip_pc_dj = #{record.bipPcDj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipPcSlcd != null">
+        bip_pc_slcd = #{record.bipPcSlcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipResume != null">
+        bip_resume = #{record.bipResume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bipQtsm != null">
+        bip_qtsm = #{record.bipQtsm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bip
+    set bip_id = #{record.bipId,jdbcType=VARCHAR},
+      bip_citizenid = #{record.bipCitizenid,jdbcType=VARCHAR},
+      bip_sex = #{record.bipSex,jdbcType=VARCHAR},
+      bip_age = #{record.bipAge,jdbcType=VARCHAR},
+      bip_name = #{record.bipName,jdbcType=VARCHAR},
+      bip_birthday = #{record.bipBirthday,jdbcType=VARCHAR},
+      bip_minzu = #{record.bipMinzu,jdbcType=VARCHAR},
+      bip_zzmm = #{record.bipZzmm,jdbcType=VARCHAR},
+      bip_hyzk = #{record.bipHyzk,jdbcType=VARCHAR},
+      bip_hjxz = #{record.bipHjxz,jdbcType=VARCHAR},
+      bip_rylb = #{record.bipRylb,jdbcType=VARCHAR},
+      bip_jkzk = #{record.bipJkzk,jdbcType=VARCHAR},
+      bip_cjqk = #{record.bipCjqk,jdbcType=VARCHAR},
+      bip_eyesightleft = #{record.bipEyesightleft,jdbcType=VARCHAR},
+      bip_eyesightright = #{record.bipEyesightright,jdbcType=VARCHAR},
+      bip_long = #{record.bipLong,jdbcType=VARCHAR},
+      bip_weight = #{record.bipWeight,jdbcType=VARCHAR},
+      bip_hkszd = #{record.bipHkszd,jdbcType=VARCHAR},
+      bip_whcd = #{record.bipWhcd,jdbcType=VARCHAR},
+      bip_subject = #{record.bipSubject,jdbcType=VARCHAR},
+      bip_graduateschool = #{record.bipGraduateschool,jdbcType=VARCHAR},
+      bip_bysj = #{record.bipBysj,jdbcType=VARCHAR},
+      bip_educationallevel2 = #{record.bipEducationallevel2,jdbcType=VARCHAR},
+      bip_con_telephone = #{record.bipConTelephone,jdbcType=VARCHAR},
+      bip_con_mobile = #{record.bipConMobile,jdbcType=VARCHAR},
+      bip_con_email = #{record.bipConEmail,jdbcType=VARCHAR},
+      bip_con_postcode = #{record.bipConPostcode,jdbcType=VARCHAR},
+      bip_con_contact = #{record.bipConContact,jdbcType=VARCHAR},
+      bip_con_contacttel = #{record.bipConContacttel,jdbcType=VARCHAR},
+      bip_res_address = #{record.bipResAddress,jdbcType=VARCHAR},
+      bip_t_lowersecurity = #{record.bipTLowersecurity,jdbcType=VARCHAR},
+      bip_t_criminal = #{record.bipTCriminal,jdbcType=VARCHAR},
+      bip_t_destitute = #{record.bipTDestitute,jdbcType=VARCHAR},
+      bip_t_peasant = #{record.bipTPeasant,jdbcType=VARCHAR},
+      bip_t_veteran = #{record.bipTVeteran,jdbcType=VARCHAR},
+      bip_t_othercities = #{record.bipTOthercities,jdbcType=VARCHAR},
+      bip_t_czjyyhz = #{record.bipTCzjyyhz,jdbcType=VARCHAR},
+      bip_t_rhfl = #{record.bipTRhfl,jdbcType=VARCHAR},
+      bip_t_newgraduate = #{record.bipTNewgraduate,jdbcType=VARCHAR},
+      bip_pc_dj = #{record.bipPcDj,jdbcType=VARCHAR},
+      bip_pc_slcd = #{record.bipPcSlcd,jdbcType=VARCHAR},
+      bip_resume = #{record.bipResume,jdbcType=VARCHAR},
+      bip_qtsm = #{record.bipQtsm,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oracle.labor.po.Bip">
+    update bip
+    <set>
+      <if test="bipCitizenid != null">
+        bip_citizenid = #{bipCitizenid,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSex != null">
+        bip_sex = #{bipSex,jdbcType=VARCHAR},
+      </if>
+      <if test="bipAge != null">
+        bip_age = #{bipAge,jdbcType=VARCHAR},
+      </if>
+      <if test="bipName != null">
+        bip_name = #{bipName,jdbcType=VARCHAR},
+      </if>
+      <if test="bipBirthday != null">
+        bip_birthday = #{bipBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="bipMinzu != null">
+        bip_minzu = #{bipMinzu,jdbcType=VARCHAR},
+      </if>
+      <if test="bipZzmm != null">
+        bip_zzmm = #{bipZzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHyzk != null">
+        bip_hyzk = #{bipHyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHjxz != null">
+        bip_hjxz = #{bipHjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="bipRylb != null">
+        bip_rylb = #{bipRylb,jdbcType=VARCHAR},
+      </if>
+      <if test="bipJkzk != null">
+        bip_jkzk = #{bipJkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipCjqk != null">
+        bip_cjqk = #{bipCjqk,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEyesightleft != null">
+        bip_eyesightleft = #{bipEyesightleft,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEyesightright != null">
+        bip_eyesightright = #{bipEyesightright,jdbcType=VARCHAR},
+      </if>
+      <if test="bipLong != null">
+        bip_long = #{bipLong,jdbcType=VARCHAR},
+      </if>
+      <if test="bipWeight != null">
+        bip_weight = #{bipWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="bipHkszd != null">
+        bip_hkszd = #{bipHkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipWhcd != null">
+        bip_whcd = #{bipWhcd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipSubject != null">
+        bip_subject = #{bipSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bipGraduateschool != null">
+        bip_graduateschool = #{bipGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bipBysj != null">
+        bip_bysj = #{bipBysj,jdbcType=VARCHAR},
+      </if>
+      <if test="bipEducationallevel2 != null">
+        bip_educationallevel2 = #{bipEducationallevel2,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConTelephone != null">
+        bip_con_telephone = #{bipConTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConMobile != null">
+        bip_con_mobile = #{bipConMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConEmail != null">
+        bip_con_email = #{bipConEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConPostcode != null">
+        bip_con_postcode = #{bipConPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConContact != null">
+        bip_con_contact = #{bipConContact,jdbcType=VARCHAR},
+      </if>
+      <if test="bipConContacttel != null">
+        bip_con_contacttel = #{bipConContacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="bipResAddress != null">
+        bip_res_address = #{bipResAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTLowersecurity != null">
+        bip_t_lowersecurity = #{bipTLowersecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTCriminal != null">
+        bip_t_criminal = #{bipTCriminal,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTDestitute != null">
+        bip_t_destitute = #{bipTDestitute,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTPeasant != null">
+        bip_t_peasant = #{bipTPeasant,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTVeteran != null">
+        bip_t_veteran = #{bipTVeteran,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTOthercities != null">
+        bip_t_othercities = #{bipTOthercities,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTCzjyyhz != null">
+        bip_t_czjyyhz = #{bipTCzjyyhz,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTRhfl != null">
+        bip_t_rhfl = #{bipTRhfl,jdbcType=VARCHAR},
+      </if>
+      <if test="bipTNewgraduate != null">
+        bip_t_newgraduate = #{bipTNewgraduate,jdbcType=VARCHAR},
+      </if>
+      <if test="bipPcDj != null">
+        bip_pc_dj = #{bipPcDj,jdbcType=VARCHAR},
+      </if>
+      <if test="bipPcSlcd != null">
+        bip_pc_slcd = #{bipPcSlcd,jdbcType=VARCHAR},
+      </if>
+      <if test="bipResume != null">
+        bip_resume = #{bipResume,jdbcType=VARCHAR},
+      </if>
+      <if test="bipQtsm != null">
+        bip_qtsm = #{bipQtsm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bip_id = #{bipId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oracle.labor.po.Bip">
+    update bip
+    set bip_citizenid = #{bipCitizenid,jdbcType=VARCHAR},
+      bip_sex = #{bipSex,jdbcType=VARCHAR},
+      bip_age = #{bipAge,jdbcType=VARCHAR},
+      bip_name = #{bipName,jdbcType=VARCHAR},
+      bip_birthday = #{bipBirthday,jdbcType=VARCHAR},
+      bip_minzu = #{bipMinzu,jdbcType=VARCHAR},
+      bip_zzmm = #{bipZzmm,jdbcType=VARCHAR},
+      bip_hyzk = #{bipHyzk,jdbcType=VARCHAR},
+      bip_hjxz = #{bipHjxz,jdbcType=VARCHAR},
+      bip_rylb = #{bipRylb,jdbcType=VARCHAR},
+      bip_jkzk = #{bipJkzk,jdbcType=VARCHAR},
+      bip_cjqk = #{bipCjqk,jdbcType=VARCHAR},
+      bip_eyesightleft = #{bipEyesightleft,jdbcType=VARCHAR},
+      bip_eyesightright = #{bipEyesightright,jdbcType=VARCHAR},
+      bip_long = #{bipLong,jdbcType=VARCHAR},
+      bip_weight = #{bipWeight,jdbcType=VARCHAR},
+      bip_hkszd = #{bipHkszd,jdbcType=VARCHAR},
+      bip_whcd = #{bipWhcd,jdbcType=VARCHAR},
+      bip_subject = #{bipSubject,jdbcType=VARCHAR},
+      bip_graduateschool = #{bipGraduateschool,jdbcType=VARCHAR},
+      bip_bysj = #{bipBysj,jdbcType=VARCHAR},
+      bip_educationallevel2 = #{bipEducationallevel2,jdbcType=VARCHAR},
+      bip_con_telephone = #{bipConTelephone,jdbcType=VARCHAR},
+      bip_con_mobile = #{bipConMobile,jdbcType=VARCHAR},
+      bip_con_email = #{bipConEmail,jdbcType=VARCHAR},
+      bip_con_postcode = #{bipConPostcode,jdbcType=VARCHAR},
+      bip_con_contact = #{bipConContact,jdbcType=VARCHAR},
+      bip_con_contacttel = #{bipConContacttel,jdbcType=VARCHAR},
+      bip_res_address = #{bipResAddress,jdbcType=VARCHAR},
+      bip_t_lowersecurity = #{bipTLowersecurity,jdbcType=VARCHAR},
+      bip_t_criminal = #{bipTCriminal,jdbcType=VARCHAR},
+      bip_t_destitute = #{bipTDestitute,jdbcType=VARCHAR},
+      bip_t_peasant = #{bipTPeasant,jdbcType=VARCHAR},
+      bip_t_veteran = #{bipTVeteran,jdbcType=VARCHAR},
+      bip_t_othercities = #{bipTOthercities,jdbcType=VARCHAR},
+      bip_t_czjyyhz = #{bipTCzjyyhz,jdbcType=VARCHAR},
+      bip_t_rhfl = #{bipTRhfl,jdbcType=VARCHAR},
+      bip_t_newgraduate = #{bipTNewgraduate,jdbcType=VARCHAR},
+      bip_pc_dj = #{bipPcDj,jdbcType=VARCHAR},
+      bip_pc_slcd = #{bipPcSlcd,jdbcType=VARCHAR},
+      bip_resume = #{bipResume,jdbcType=VARCHAR},
+      bip_qtsm = #{bipQtsm,jdbcType=VARCHAR}
+    where bip_id = #{bipId,jdbcType=VARCHAR}
+  </update>
+</mapper>
